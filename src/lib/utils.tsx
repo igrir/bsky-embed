@@ -173,14 +173,18 @@ export const fetchVideo = async (video: any, videoRef: any) => {
           hls.loadSource(video.playlist); // Load the HLS manifest
           hls.attachMedia(videoRef); // Attach to video element
           hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            videoRef.play();
+            if (videoRef !== null) {
+              videoRef.play();
+            }
           });
         } else if (videoRef.canPlayType('application/vnd.apple.mpegurl')) {
           // Fallback for native HLS support in Safari
-          videoRef.src = video.playlist;
-          videoRef.addEventListener('loadedmetadata', () => {
-            videoRef.play();
-          });
+          if (videoRef !== null) { 
+            videoRef.src = video.playlist;
+            videoRef.addEventListener('loadedmetadata', () => {
+              videoRef.play();
+            });
+          }
         }
 
         // Optionally, unobserve once video starts playing if you don't need to watch for it going out of view
