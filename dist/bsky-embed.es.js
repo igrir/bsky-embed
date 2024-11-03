@@ -36433,10 +36433,10 @@ const Cl = /* @__PURE__ */ t0(SC), Ip = ({
         if (Cl.isSupported()) {
           var m = new Cl();
           m.loadSource(t.playlist), m.attachMedia(e), m.on(Cl.Events.MANIFEST_PARSED, () => {
-            e.play();
+            e !== null && e.play();
           });
         } else
-          e.canPlayType("application/vnd.apple.mpegurl") && (e.src = t.playlist, e.addEventListener("loadedmetadata", () => {
+          e.canPlayType("application/vnd.apple.mpegurl") && e !== null && (e.src = t.playlist, e.addEventListener("loadedmetadata", () => {
             e.play();
           }));
         y.unobserve(e);
@@ -36454,7 +36454,7 @@ const Up = ({
 }) => {
   let u;
   return Mh(() => {
-    e.video && e.video.cid && (console.log(u), u && CC(e.video, u));
+    e.video && e.video.cid && CC(e.video, u);
   }), (() => {
     var x = DC(), y = x.firstChild, d = y.firstChild, m = d.firstChild, h = m.firstChild, p = h.firstChild, T = p.nextSibling, w = T.nextSibling;
     w.firstChild;
